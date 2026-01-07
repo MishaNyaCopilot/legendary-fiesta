@@ -16,6 +16,8 @@ export default function HomeScreen() {
     }
   }, [isSubscribed, rootNavigationState?.key]);
 
+  if (!rootNavigationState?.key) return null;
+
   return (
     <View className="flex-1 items-center justify-center bg-white">
       <Text className="text-2xl font-bold mb-4">ZenPulse</Text>
