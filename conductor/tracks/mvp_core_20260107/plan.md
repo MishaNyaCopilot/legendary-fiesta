@@ -6,14 +6,14 @@
 - [x] Task: Implement global state management (Context/Zustand) for subscription status. b6b49cf
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Project Scaffolding & Setup' (Protocol in workflow.md)
 
-## Phase 2: Paywall Implementation
+## Phase 2: Paywall Implementation [checkpoint: c4a78ed]
 - [x] Task: Create Glassmorphism UI components (translucency, blur). 5d9501d
 - [x] Task: Implement Paywall screen with pricing tiers. 0355a37
 - [x] Task: Implement "Try for Free" logic to update subscription state. 0355a37
-- [~] Task: Conductor - User Manual Verification 'Phase 2: Paywall Implementation' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: Paywall Implementation' (Protocol in workflow.md)
 
 ## Phase 3: Meditation Hub
-- [ ] Task: Create Meditation Hub screen with session list.
+- [~] Task: Create Meditation Hub screen with session list.
 - [ ] Task: Implement card component with locking/grey-out logic.
 - [ ] Task: Implement navigation redirection for locked content.
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: Meditation Hub' (Protocol in workflow.md)
