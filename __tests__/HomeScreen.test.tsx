@@ -10,6 +10,14 @@ jest.mock('expo-router', () => ({
 }));
 
 describe('HomeScreen Redirection', () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+
+  afterEach(() => {
+    jest.useRealTimers();
+  });
+
   it('redirects to paywall if not subscribed', () => {
     const replaceMock = jest.fn();
     (useRouter as jest.Mock).mockReturnValue({
@@ -21,6 +29,8 @@ describe('HomeScreen Redirection', () => {
         <HomeScreen />
       </SubscriptionProvider>
     );
+
+    jest.runAllTimers();
 
     expect(replaceMock).toHaveBeenCalledWith('/paywall');
   });

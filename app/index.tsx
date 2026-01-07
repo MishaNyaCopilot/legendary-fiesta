@@ -12,7 +12,9 @@ export default function HomeScreen() {
     if (!rootNavigationState?.key) return;
 
     if (!isSubscribed) {
-      router.replace("/paywall");
+      setTimeout(() => {
+        router.replace("/paywall");
+      }, 0);
     }
   }, [isSubscribed, rootNavigationState?.key]);
 

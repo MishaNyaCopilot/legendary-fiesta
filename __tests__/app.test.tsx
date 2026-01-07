@@ -11,6 +11,14 @@ jest.mock('expo-router', () => ({
 }));
 
 describe('HomeScreen', () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+
+  afterEach(() => {
+    jest.useRealTimers();
+  });
+
   it('renders correctly', () => {
     render(
       <SubscriptionProvider>
