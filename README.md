@@ -26,7 +26,7 @@ ZenPulse is a high-end, AI-powered meditation application prototype built using 
 ### 1. Clone and Install
 ```bash
 git clone <repository-url>
-cd test-zadaniye
+cd legendary-fiesta
 npm install
 ```
 
