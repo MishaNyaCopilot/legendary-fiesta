@@ -83,6 +83,8 @@ export default function VibeScreen() {
                   className="items-center justify-center p-6 rounded-[32px] w-[30%]"
                   style={({ pressed }) => ({ 
                     backgroundColor: isSelected ? 'white' : 'rgba(255,255,255,0.15)',
+                    borderWidth: 1,
+                    borderColor: isSelected ? 'white' : 'rgba(255,255,255,0.3)',
                     opacity: pressed ? 0.7 : 1,
                     transform: [{ scale: pressed ? 0.95 : 1 }]
                   })}
