@@ -1,10 +1,19 @@
 import React, { useEffect } from "react";
-import { View, Text } from "react-native";
+import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
 import { useRouter, useRootNavigationState } from "expo-router";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Lock, Play, Sparkles } from "lucide-react-native";
 import { useSubscription } from "../context/SubscriptionContext";
 
+const SESSIONS = [
+  { id: '1', title: 'Morning Focus', duration: '5 min', isPremium: false, image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=400&h=250&auto=format&fit=crop' },
+  { id: '2', title: 'Deep Sleep', duration: '15 min', isPremium: true, image: 'https://images.unsplash.com/photo-1511295742364-9119143661c1?q=80&w=400&h=250&auto=format&fit=crop' },
+  { id: '3', title: 'Stress Relief', duration: '10 min', isPremium: true, image: 'https://images.unsplash.com/photo-1518241353349-9b5974ee2e3d?q=80&w=400&h=250&auto=format&fit=crop' },
+  { id: '4', title: 'Quick Reset', duration: '3 min', isPremium: false, image: 'https://images.unsplash.com/photo-1441155472722-d17942a2b76a?q=80&w=400&h=250&auto=format&fit=crop' },
+];
+
 export default function HomeScreen() {
-  const { isSubscribed } = useSubscription();
+  const { isSubscribed, unsubscribe } = useSubscription();
   const router = useRouter();
   const rootNavigationState = useRootNavigationState();
 
@@ -18,12 +27,69 @@ export default function HomeScreen() {
     }
   }, [isSubscribed, rootNavigationState?.key]);
 
-  if (!rootNavigationState?.key) return null;
+  if (!rootNavigationState?.key || !isSubscribed) return null;
+
+  const renderItem = ({ item }: { item: typeof SESSIONS[0] }) => {
+    const isLocked = item.isPremium && !isSubscribed;
+
+    return (
+      <TouchableOpacity 
+        onPress={() => isLocked ? router.push('/paywall') : null}
+        className="mb-6 rounded-3xl bg-white shadow-sm overflow-hidden border border-gray-100"
+      >
+        <Image source={{ uri: item.image }} className="w-full h-40" />
+        <View className="p-4 flex-row justify-between items-center">
+          <View>
+            <Text className="text-xl font-bold text-gray-800">{item.title}</Text>
+            <Text className="text-gray-500">{item.duration}</Text>
+          </View>
+          {item.isPremium ? (
+            <View className="bg-purple-100 p-2 rounded-full">
+              <Lock size={20} color="#7C3AED" />
+            </View>
+          ) : (
+            <View className="bg-green-100 p-2 rounded-full">
+              <Play size={20} color="#059669" />
+            </View>
+          )}
+        </View>
+      </TouchableOpacity>
+    );
+  };
 
   return (
-    <View className="flex-1 items-center justify-center bg-white">
-      <Text className="text-2xl font-bold mb-4">ZenPulse</Text>
-      <Text className="text-gray-500 mb-8">AI Meditation App</Text>
-    </View>
+    <SafeAreaView className="flex-1 bg-gray-50">
+      <View className="p-6">
+        <View className="flex-row justify-between items-center mb-8">
+          <View>
+            <Text className="text-3xl font-bold text-gray-900">ZenPulse</Text>
+            <Text className="text-gray-500">Find your inner peace</Text>
+          </View>
+          <TouchableOpacity 
+            onPress={() => router.push('/vibe')}
+            className="bg-purple-600 p-3 rounded-2xl flex-row items-center"
+          >
+            <Sparkles size={20} color="white" />
+            <Text className="text-white font-bold ml-2">Vibe</Text>
+          </TouchableOpacity>
+        </View>
+
+        <FlatList
+          data={SESSIONS}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+          showsVerticalScrollIndicator={false}
+          ListFooterComponent={<View className="h-32" />}
+        />
+      </View>
+      
+      {/* Test Logout Button */}
+      <TouchableOpacity 
+        onPress={unsubscribe}
+        className="absolute bottom-10 left-6 right-6 bg-gray-200 p-4 rounded-2xl items-center"
+      >
+        <Text className="text-gray-600 font-bold">Sign Out (Test Only)</Text>
+      </TouchableOpacity>
+    </SafeAreaView>
   );
 }
