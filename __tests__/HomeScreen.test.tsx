@@ -6,6 +6,7 @@ import { useRouter } from 'expo-router';
 
 jest.mock('expo-router', () => ({
   useRouter: jest.fn(),
+  useRootNavigationState: () => ({ key: 'test-key' }),
 }));
 
 describe('HomeScreen Redirection', () => {

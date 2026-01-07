@@ -7,6 +7,7 @@ jest.mock('expo-router', () => ({
   useRouter: () => ({
     replace: jest.fn(),
   }),
+  useRootNavigationState: () => ({ key: 'test-key' }),
 }));
 
 describe('HomeScreen', () => {

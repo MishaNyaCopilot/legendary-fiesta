@@ -1,17 +1,20 @@
 import React, { useEffect } from "react";
 import { View, Text } from "react-native";
-import { useRouter } from "expo-router";
+import { useRouter, useRootNavigationState } from "expo-router";
 import { useSubscription } from "../context/SubscriptionContext";
 
 export default function HomeScreen() {
   const { isSubscribed } = useSubscription();
   const router = useRouter();
+  const rootNavigationState = useRootNavigationState();
 
   useEffect(() => {
+    if (!rootNavigationState?.key) return;
+
     if (!isSubscribed) {
       router.replace("/paywall");
     }
-  }, [isSubscribed]);
+  }, [isSubscribed, rootNavigationState?.key]);
 
   return (
     <View className="flex-1 items-center justify-center bg-white">
