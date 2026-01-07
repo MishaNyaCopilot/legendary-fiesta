@@ -16,6 +16,48 @@ ZenPulse is a high-end, AI-powered meditation application prototype built using 
 - **AI Service:** OpenRouter API (Fallback to high-quality local mocks)
 - **Testing:** Jest + React Native Testing Library
 
+## Setup & Installation
+
+### Prerequisites
+- [Node.js](https://nodejs.org/) (v18 or newer)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- [Expo Go](https://expo.dev/go) app on your mobile device (for native testing)
+
+### 1. Clone and Install
+```bash
+git clone <repository-url>
+cd test-zadaniye
+npm install
+```
+
+### 2. Environment Variables
+Create a `.env` file in the root directory (or use `.env.local`).
+The app uses **OpenRouter** for AI affirmations. If no key is provided, it seamlessly falls back to local high-quality mock responses.
+
+```env
+EXPO_PUBLIC_OPENROUTER_API_KEY=your_api_key_here
+```
+
+### 3. Run the App
+```bash
+# Start Metro Bundler
+npx expo start
+
+# Run on Web
+npx expo start --web
+
+# Run on Android
+npx expo start --android
+
+# Run on iOS (macOS required)
+npx expo start --ios
+```
+
+### 4. Running Tests
+```bash
+npm test
+```
+
 ## Answers to Control Questions
 
 ### С какими специфическими проблемами мобильной верстки ИИ справляется хуже всего?
