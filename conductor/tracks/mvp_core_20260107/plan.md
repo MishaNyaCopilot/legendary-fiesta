@@ -2,7 +2,7 @@
 
 ## Phase 1: Project Scaffolding & Setup
 - [x] Task: Initialize Expo project with TypeScript and NativeWind. 3432354
-- [ ] Task: Set up basic folder structure and navigation (Expo Router).
+- [~] Task: Set up basic folder structure and navigation (Expo Router).
 - [ ] Task: Implement global state management (Context/Zustand) for subscription status.
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Project Scaffolding & Setup' (Protocol in workflow.md)
 
