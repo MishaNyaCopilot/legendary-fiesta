@@ -79,17 +79,18 @@ export default function HomeScreen() {
           renderItem={renderItem}
           keyExtractor={item => item.id}
           showsVerticalScrollIndicator={false}
-          ListFooterComponent={<View className="h-32" />}
+          ListFooterComponent={
+            <View className="pb-20">
+              <TouchableOpacity 
+                onPress={unsubscribe}
+                className="mt-8 bg-gray-200 p-4 rounded-2xl items-center"
+              >
+                <Text className="text-gray-600 font-bold">Sign Out (Test Only)</Text>
+              </TouchableOpacity>
+            </View>
+          }
         />
       </View>
-      
-      {/* Test Logout Button */}
-      <TouchableOpacity 
-        onPress={unsubscribe}
-        className="absolute bottom-10 left-6 right-6 bg-gray-200 p-4 rounded-2xl items-center"
-      >
-        <Text className="text-gray-600 font-bold">Sign Out (Test Only)</Text>
-      </TouchableOpacity>
     </SafeAreaView>
   );
 }

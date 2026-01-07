@@ -10,7 +10,7 @@ describe('PaywallScreen', () => {
         <PaywallScreen />
       </SubscriptionProvider>
     );
-    expect(screen.getByText('Unlock ZenPulse Premium')).toBeTruthy();
+    expect(screen.getByText('ZenPulse Premium')).toBeTruthy();
     expect(screen.getByText('Unlimited Meditation Sessions')).toBeTruthy();
   });
 

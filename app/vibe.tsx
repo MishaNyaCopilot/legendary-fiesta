@@ -65,54 +65,58 @@ export default function VibeScreen() {
           </TouchableOpacity>
         </View>
 
-        <ScrollView contentContainerStyle={{ padding: 20, flexGrow: 1, justifyContent: 'center' }}>
-          <View className="items-center mb-10">
-            <Text className="text-white text-3xl font-bold text-center">How are you feeling?</Text>
-            <Text className="text-white/80 text-lg mt-2 text-center">Select your vibe for today</Text>
-          </View>
+        <ScrollView contentContainerStyle={{ padding: 20, flexGrow: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <View className="w-full max-w-md">
+            <View className="items-center mb-10">
+              <Text className="text-white text-4xl font-black text-center">How are you feeling?</Text>
+              <Text className="text-white/80 text-xl mt-2 text-center italic">Select your vibe for today</Text>
+            </View>
 
-          <View className="flex-row justify-between mb-8">
-            {MOODS.map((mood) => {
-              const isSelected = selectedMood === mood.id;
-              return (
-                <TouchableOpacity
-                  key={mood.id}
-                  onPress={() => {
-                    if (!isLoading) setSelectedMood(mood.id);
-                  }}
-                  className="items-center p-4 rounded-3xl w-[30%]"
-                  style={{ backgroundColor: isSelected ? 'white' : 'rgba(255,255,255,0.1)' }}
-                >
-                  <Text className="text-4xl mb-2">{mood.emoji}</Text>
-                  <Text 
-                    className="font-medium"
-                    style={{ color: isSelected ? '#9333ea' : 'white' }}
+            <View className="flex-row justify-between mb-12">
+              {MOODS.map((mood) => {
+                const isSelected = selectedMood === mood.id;
+                return (
+                  <TouchableOpacity
+                    key={mood.id}
+                    onPress={() => {
+                      if (!isLoading) setSelectedMood(mood.id);
+                    }}
+                    className="items-center p-6 rounded-[35px] w-[30%] shadow-xl"
+                    style={{ 
+                      backgroundColor: isSelected ? 'white' : 'rgba(255,255,255,0.15)',
+                      transform: [{ scale: isSelected ? 1.05 : 1 }]
+                    }}
                   >
-                    {mood.label}
-                  </Text>
-                </TouchableOpacity>
-              );
-            })}
-          </View>
-
-          {(isLoading || displayedText) && (
-             <GlassView className="mt-12 min-h-[200px] justify-center items-center">
-                {isLoading ? (
-                  <View className="items-center">
-                    <ActivityIndicator color="white" size="large" />
-                    <Text className="text-white/70 mt-6 text-center italic text-lg">Consulting the universe...</Text>
-                  </View>
-                ) : (
-                  <View className="items-center">
-                    <Sparkles size={24} color="white" className="mb-4 opacity-60" />
-                    <Text className="text-white text-2xl text-center leading-[34px] font-serif italic">
-                      {displayedText}
+                    <Text className="text-5xl mb-3">{mood.emoji}</Text>
+                    <Text 
+                      className="font-black text-sm uppercase tracking-tighter"
+                      style={{ color: isSelected ? '#9333ea' : 'white' }}
+                    >
+                      {mood.label}
                     </Text>
-                  </View>
-                )}
-             </GlassView>
-          )}
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
 
+            {(isLoading || displayedText) && (
+               <GlassView className="min-h-[220px] justify-center items-center shadow-2xl">
+                  {isLoading ? (
+                    <View className="items-center">
+                      <ActivityIndicator color="white" size="large" />
+                      <Text className="text-white/70 mt-6 text-center italic text-lg">Consulting the universe...</Text>
+                    </View>
+                  ) : (
+                    <View className="items-center">
+                      <Sparkles size={32} color="white" className="mb-6 opacity-40" />
+                      <Text className="text-white text-2xl text-center leading-[38px] font-serif italic">
+                        "{displayedText}"
+                      </Text>
+                    </View>
+                  )}
+               </GlassView>
+            )}
+          </View>
         </ScrollView>
       </SafeAreaView>
     </View>

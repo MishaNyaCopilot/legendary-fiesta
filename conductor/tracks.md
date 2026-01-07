@@ -4,5 +4,5 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-## [~] Track: Build the core ZenPulse MVP including the Smart Paywall, Meditation Hub with locking logic, and the "AI Vibe" mood affirmation feature.
+## [x] Track: Build the core ZenPulse MVP including the Smart Paywall, Meditation Hub with locking logic, and the "AI Vibe" mood affirmation feature.
 *Link: [./conductor/tracks/mvp_core_20260107/](./conductor/tracks/mvp_core_20260107/)*
