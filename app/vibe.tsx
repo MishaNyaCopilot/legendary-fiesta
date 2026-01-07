@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, ActivityIndicator, Pressable } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
@@ -75,24 +75,28 @@ export default function VibeScreen() {
             {MOODS.map((mood) => {
               const isSelected = selectedMood === mood.id;
               return (
-                <TouchableOpacity
+                <Pressable
                   key={mood.id}
                   onPress={() => {
                     if (!isLoading) setSelectedMood(mood.id);
                   }}
-                  className={`items-center p-6 rounded-[32px] w-[30%] shadow-lg`}
-                  style={{ 
+                  className="items-center justify-center p-6 rounded-[32px] w-[30%]"
+                  style={({ pressed }) => ({ 
                     backgroundColor: isSelected ? 'white' : 'rgba(255,255,255,0.15)',
-                  }}
+                    opacity: pressed ? 0.7 : 1,
+                    transform: [{ scale: pressed ? 0.95 : 1 }]
+                  })}
                 >
-                  <Text className="text-5xl mb-3">{mood.emoji}</Text>
+                  <Text className="text-5xl mb-3 bg-transparent">{mood.emoji}</Text>
                   <Text 
-                    className="font-black text-[10px] uppercase tracking-tighter"
-                    style={{ color: isSelected ? '#9333ea' : 'white' }}
+                    className="font-bold text-[10px] uppercase tracking-wider bg-transparent"
+                    style={{ 
+                      color: isSelected ? '#9333ea' : 'white',
+                    }}
                   >
                     {mood.label}
                   </Text>
-                </TouchableOpacity>
+                </Pressable>
               );
             })}
           </View>
@@ -107,7 +111,7 @@ export default function VibeScreen() {
                 ) : (
                   <View className="items-center w-full">
                     <Sparkles size={32} color="white" className="mb-6 opacity-40" />
-                    <Text className="text-white text-2xl text-center leading-[38px] font-serif italic">
+                    <Text className="text-white text-2xl text-center leading-[38px] font-serif italic bg-transparent">
                       "{displayedText}"
                     </Text>
                   </View>
