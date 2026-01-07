@@ -38,7 +38,7 @@ export const generateAffirmation = async (mood: string): Promise<string> => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "openrouter/auto", // Or a specific free model
+        model: "z-ai/glm-4.5-air:free", // Or a specific free model
         messages: [
           { role: "system", content: "You are a zen meditation assistant. Generate a short, poetic, and serene affirmation (1-2 sentences) based on the user's mood." },
           { role: "user", content: `My mood is: ${mood}` }
