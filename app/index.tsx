@@ -59,7 +59,7 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView className="flex-1 bg-gray-50">
-      <View className="p-6">
+      <View className="flex-1 p-6">
         <View className="flex-row justify-between items-center mb-8">
           <View>
             <Text className="text-3xl font-bold text-gray-900">ZenPulse</Text>
