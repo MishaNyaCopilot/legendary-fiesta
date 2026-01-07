@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { GlassView } from '../components/GlassView';
-import { ArrowLeft, RefreshCw } from 'lucide-react-native';
+import { ArrowLeft, RefreshCw, Sparkles } from 'lucide-react-native';
 import { generateAffirmation } from '../services/ai';
 
 const MOODS = [
@@ -96,26 +96,18 @@ export default function VibeScreen() {
           </View>
 
           {(isLoading || displayedText) && (
-             <GlassView className="mt-8 min-h-[150px] justify-center items-center">
+             <GlassView className="mt-12 min-h-[200px] justify-center items-center">
                 {isLoading ? (
                   <View className="items-center">
                     <ActivityIndicator color="white" size="large" />
-                    <Text className="text-white/70 mt-4 text-center italic">Consulting the universe...</Text>
+                    <Text className="text-white/70 mt-6 text-center italic text-lg">Consulting the universe...</Text>
                   </View>
                 ) : (
-                  <View>
-                    <Text className="text-white text-xl text-center leading-relaxed font-serif">
-                      "{displayedText}"
+                  <View className="items-center">
+                    <Sparkles size={24} color="white" className="mb-4 opacity-60" />
+                    <Text className="text-white text-2xl text-center leading-[34px] font-serif italic">
+                      {displayedText}
                     </Text>
-                    {displayedText === affirmation && (
-                      <TouchableOpacity 
-                        onPress={() => setSelectedMood(null)}
-                        className="mt-6 self-center bg-white/20 px-4 py-2 rounded-full flex-row items-center"
-                      >
-                        <RefreshCw size={16} color="white" />
-                        <Text className="text-white ml-2 font-medium">Try another mood</Text>
-                      </TouchableOpacity>
-                    )}
                   </View>
                 )}
              </GlassView>
