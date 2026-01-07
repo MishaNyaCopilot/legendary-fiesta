@@ -18,15 +18,15 @@ export const GlassView = ({
   return (
     <View 
       style={[styles.container, style]} 
-      className="overflow-hidden rounded-[40px] border border-white/40 shadow-2xl"
+      className="overflow-hidden border border-white/30"
       {...props}
     >
       <BlurView
-        intensity={60}
+        intensity={50}
         tint="light"
         style={StyleSheet.absoluteFill}
       />
-      <View className="p-8">
+      <View className="p-8 items-center justify-center">
         {children}
       </View>
     </View>
@@ -35,6 +35,7 @@ export const GlassView = ({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    backgroundColor: 'rgba(255, 255, 255, 0.12)',
+    borderRadius: 32,
   },
 });

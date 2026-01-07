@@ -36,28 +36,22 @@ export default function PaywallScreen() {
         style={StyleSheet.absoluteFill}
       />
       <SafeAreaView className="flex-1">
-        <View className="p-4 flex-row justify-end">
-          <TouchableOpacity onPress={() => router.back()} className="bg-black/20 p-2 rounded-full">
-            <X color="white" size={20} />
-          </TouchableOpacity>
-        </View>
-
         <ScrollView contentContainerStyle={{ padding: 20, flexGrow: 1, justifyContent: 'center' }}>
-          <View className="items-center mb-8">
-            <Text className="text-white text-4xl font-bold text-center">ZenPulse Premium</Text>
-            <Text className="text-white/80 text-xl mt-2 text-center italic">Elevate your mindfulness journey</Text>
+          <View className="items-center mb-12">
+            <Text className="text-white text-5xl font-black text-center tracking-tight">ZenPulse</Text>
+            <Text className="text-white/90 text-xl mt-2 text-center font-medium italic">Elevate your mindfulness</Text>
           </View>
 
-          <GlassView className="mb-8">
+          <View className="mb-10 px-4">
             {benefits.map((benefit, index) => (
-              <View key={index} className="flex-row items-center mb-4">
-                <View className="bg-white/20 p-1 rounded-full mr-3">
-                  <Text className="text-white text-xs">✓</Text>
+              <View key={index} className="flex-row items-center mb-5">
+                <View className="bg-white/30 p-1.5 rounded-full mr-4 shadow-sm">
+                  <Text className="text-white text-[10px]">✓</Text>
                 </View>
-                <Text className="text-white text-lg font-medium">{benefit}</Text>
+                <Text className="text-white text-lg font-semibold tracking-wide">{benefit}</Text>
               </View>
             ))}
-          </GlassView>
+          </View>
 
           <View className="flex-row justify-between mb-8">
             <TouchableOpacity 
