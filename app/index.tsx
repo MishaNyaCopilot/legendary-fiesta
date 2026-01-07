@@ -6,10 +6,10 @@ import { Lock, Play, Sparkles } from "lucide-react-native";
 import { useSubscription } from "../context/SubscriptionContext";
 
 const SESSIONS = [
-  { id: '1', title: 'Morning Focus', duration: '5 min', isPremium: false, image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=400&h=250&auto=format&fit=crop' },
-  { id: '2', title: 'Deep Sleep', duration: '15 min', isPremium: true, image: 'https://images.unsplash.com/photo-1511295742364-9119143661c1?q=80&w=400&h=250&auto=format&fit=crop' },
-  { id: '3', title: 'Stress Relief', duration: '10 min', isPremium: true, image: 'https://images.unsplash.com/photo-1518241353349-9b5974ee2e3d?q=80&w=400&h=250&auto=format&fit=crop' },
-  { id: '4', title: 'Quick Reset', duration: '3 min', isPremium: false, image: 'https://images.unsplash.com/photo-1441155472722-d17942a2b76a?q=80&w=400&h=250&auto=format&fit=crop' },
+  { id: '1', title: 'Morning Focus', duration: '5 min', isPremium: false, image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=800' },
+  { id: '2', title: 'Deep Sleep', duration: '15 min', isPremium: true, image: 'https://images.unsplash.com/photo-1495360010541-f48722b34f7d?auto=format&fit=crop&q=80&w=800' },
+  { id: '3', title: 'Stress Relief', duration: '10 min', isPremium: true, image: 'https://images.unsplash.com/photo-1512438248247-f0f2a5a8b7f0?auto=format&fit=crop&q=80&w=800' },
+  { id: '4', title: 'Quick Reset', duration: '3 min', isPremium: false, image: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&q=80&w=800' },
 ];
 
 export default function HomeScreen() {
