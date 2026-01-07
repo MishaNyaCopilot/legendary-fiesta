@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { GlassView } from '../components/GlassView';
-import { ArrowLeft } from 'lucide-react-native';
+import { ArrowLeft, RefreshCw } from 'lucide-react-native';
+import { generateAffirmation } from '../services/ai';
 
 const MOODS = [
   { id: 'calm', label: 'Calm', emoji: '🌿' },
@@ -15,6 +16,41 @@ const MOODS = [
 export default function VibeScreen() {
   const router = useRouter();
   const [selectedMood, setSelectedMood] = useState<string | null>(null);
+  const [affirmation, setAffirmation] = useState("");
+  const [displayedText, setDisplayedText] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (selectedMood) {
+      handleGenerate();
+    }
+  }, [selectedMood]);
+
+  useEffect(() => {
+    if (affirmation && displayedText.length < affirmation.length) {
+      const timeout = setTimeout(() => {
+        setDisplayedText(affirmation.slice(0, displayedText.length + 1));
+      }, 30);
+      return () => clearTimeout(timeout);
+    }
+  }, [affirmation, displayedText]);
+
+  const handleGenerate = async () => {
+    if (!selectedMood) return;
+    
+    setIsLoading(true);
+    setAffirmation("");
+    setDisplayedText("");
+    
+    try {
+      const result = await generateAffirmation(selectedMood);
+      setAffirmation(result);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <View className="flex-1">
@@ -39,8 +75,10 @@ export default function VibeScreen() {
             {MOODS.map((mood) => (
               <TouchableOpacity
                 key={mood.id}
-                onPress={() => setSelectedMood(mood.id)}
-                className={`items-center p-4 rounded-3xl w-[30%] ${selectedMood === mood.id ? 'bg-white' : 'bg-white/10'}`}
+                onPress={() => {
+                  if (!isLoading) setSelectedMood(mood.id);
+                }}
+                className={`items-center p-4 rounded-3xl w-[30%] ${selectedMood === mood.id ? 'bg-white shadow-lg' : 'bg-white/10'}`}
               >
                 <Text className="text-4xl mb-2">{mood.emoji}</Text>
                 <Text className={`font-medium ${selectedMood === mood.id ? 'text-purple-600' : 'text-white'}`}>
@@ -50,9 +88,29 @@ export default function VibeScreen() {
             ))}
           </View>
 
-          {selectedMood && (
-             <GlassView className="mt-8">
-                <Text className="text-white text-center">Tap to generate your affirmation...</Text>
+          {(isLoading || displayedText) && (
+             <GlassView className="mt-8 min-h-[150px] justify-center items-center">
+                {isLoading ? (
+                  <View className="items-center">
+                    <ActivityIndicator color="white" size="large" />
+                    <Text className="text-white/70 mt-4 text-center italic">Consulting the universe...</Text>
+                  </View>
+                ) : (
+                  <View>
+                    <Text className="text-white text-xl text-center leading-relaxed font-serif">
+                      "{displayedText}"
+                    </Text>
+                    {displayedText === affirmation && (
+                      <TouchableOpacity 
+                        onPress={() => setSelectedMood(null)}
+                        className="mt-6 self-center bg-white/20 px-4 py-2 rounded-full flex-row items-center"
+                      >
+                        <RefreshCw size={16} color="white" />
+                        <Text className="text-white ml-2 font-medium">Try another mood</Text>
+                      </TouchableOpacity>
+                    )}
+                  </View>
+                )}
              </GlassView>
           )}
 
