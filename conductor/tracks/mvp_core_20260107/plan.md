@@ -8,9 +8,9 @@
 
 ## Phase 2: Paywall Implementation
 - [x] Task: Create Glassmorphism UI components (translucency, blur). 5d9501d
-- [~] Task: Implement Paywall screen with pricing tiers.
-- [ ] Task: Implement "Try for Free" logic to update subscription state.
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: Paywall Implementation' (Protocol in workflow.md)
+- [x] Task: Implement Paywall screen with pricing tiers. 0355a37
+- [x] Task: Implement "Try for Free" logic to update subscription state. 0355a37
+- [~] Task: Conductor - User Manual Verification 'Phase 2: Paywall Implementation' (Protocol in workflow.md)
 
 ## Phase 3: Meditation Hub
 - [ ] Task: Create Meditation Hub screen with session list.
