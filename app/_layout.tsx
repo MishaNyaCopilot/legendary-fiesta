@@ -8,9 +8,7 @@ export default function RootLayout() {
   return (
     <SafeAreaProvider>
       <SubscriptionProvider>
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="index" />
-        </Stack>
+        <Stack screenOptions={{ headerShown: false }} />
         <StatusBar style="auto" />
       </SubscriptionProvider>
     </SafeAreaProvider>

@@ -72,20 +72,27 @@ export default function VibeScreen() {
           </View>
 
           <View className="flex-row justify-between mb-8">
-            {MOODS.map((mood) => (
-              <TouchableOpacity
-                key={mood.id}
-                onPress={() => {
-                  if (!isLoading) setSelectedMood(mood.id);
-                }}
-                className={`items-center p-4 rounded-3xl w-[30%] ${selectedMood === mood.id ? 'bg-white shadow-lg' : 'bg-white/10'}`}
-              >
-                <Text className="text-4xl mb-2">{mood.emoji}</Text>
-                <Text className={`font-medium ${selectedMood === mood.id ? 'text-purple-600' : 'text-white'}`}>
-                  {mood.label}
-                </Text>
-              </TouchableOpacity>
-            ))}
+            {MOODS.map((mood) => {
+              const isSelected = selectedMood === mood.id;
+              return (
+                <TouchableOpacity
+                  key={mood.id}
+                  onPress={() => {
+                    if (!isLoading) setSelectedMood(mood.id);
+                  }}
+                  className="items-center p-4 rounded-3xl w-[30%]"
+                  style={{ backgroundColor: isSelected ? 'white' : 'rgba(255,255,255,0.1)' }}
+                >
+                  <Text className="text-4xl mb-2">{mood.emoji}</Text>
+                  <Text 
+                    className="font-medium"
+                    style={{ color: isSelected ? '#9333ea' : 'white' }}
+                  >
+                    {mood.label}
+                  </Text>
+                </TouchableOpacity>
+              );
+            })}
           </View>
 
           {(isLoading || displayedText) && (
